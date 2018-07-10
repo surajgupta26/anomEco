@@ -1,1 +1,1 @@
-# anomEco
+# Anomaly Detection for Ueconomics
