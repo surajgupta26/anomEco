@@ -56,6 +56,10 @@ class AlertSystem:
             return
         self.server.sendmail(self.username, message['To'], message.as_string())
 
+    def sendAlerts(self, alerts):
+        for alert in alerts:
+            sendAlert(alert)
+
 if __name__=='__main__':
     als=AlertSystem()
     als.addRecipient(location='Hyderabad',recipient_email=als.username)
