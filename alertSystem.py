@@ -44,6 +44,9 @@ class AlertSystem:
             self.remove(recipient_email)
             saveObject('location_to_emails.p',location_to_emails)
 
+    def getRecipients(self, location):
+        return self.location_to_emails[location]
+
     def getMessage(self, alert):
         message=alert.getMessage()
         message['From']=self.username
