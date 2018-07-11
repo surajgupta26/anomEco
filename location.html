@@ -1,7 +1,7 @@
 {% block body %}
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>{{location}} Alerts Management</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
     <div class="container">
         <h2>Form control: select</h2>
         <p>The form below contains two dropdown menus (select lists):</p>
-        <form>
+        <form action="alsUpdate" method="POST">
           <div class="form-group">
             <select multiple class="form-control" id="sel2">
                 {% for email in emails %}
@@ -26,8 +26,8 @@
           <label for="usr">Email:</label>
           <input type="text" class="form-control" id="usr" name="email">
           <br>
-          <button type="submit" formmethod="POST" class="btn btn-primary btn-md">Add Recipient</button>
-          <button type="button" class="btn btn-primary btn-md">Remove Recipient</button>
+          <button type="submit" formmethod="POST" class="btn btn-primary btn-md" value="Add">Add Recipient</button>
+          <button type="submit" formmethod="POST" class="btn btn-primary btn-md" value="Remove">Remove Recipient</button>
         </form>
       </div>
 
