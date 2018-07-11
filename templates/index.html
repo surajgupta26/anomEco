@@ -16,13 +16,9 @@
     <div class="form-group">
       <label for="sel1">Select location (select one):</label>
       <select class="form-control" id="sel1" onchange="location = this.value;">
-        <option>Select Location</option>
-        <option>Hyderabad</option>
-        <option>Bangalore</option>
-        <option>Mumbai</option>
-        <option>Delhi</option>
-        <option>Kolkata</option>
-        <option>Chennai</option>
+        {% for location in locations %}
+        <option>{{location}}</option>
+        {% endfor %}
       </select>
     </div>
   </form>
