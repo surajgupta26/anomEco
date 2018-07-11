@@ -15,7 +15,7 @@
     <div class="container">
         <h2>Form control: select</h2>
         <p>The form below contains two dropdown menus (select lists):</p>
-        <form action="alsUpdate" method="POST">
+        <form method="post">
           <div class="form-group">
             <select multiple class="form-control" id="sel2">
                 {% for email in emails %}
@@ -24,10 +24,10 @@
             </select>
           </div>
           <label for="usr">Email:</label>
-          <input type="text" class="form-control" id="usr" name="email">
+          <input type="text" class="form-control" id="usremail" name="usremail">
           <br>
-          <button type="submit" formmethod="POST" class="btn btn-primary btn-md" value="Add">Add Recipient</button>
-          <button type="submit" formmethod="POST" class="btn btn-primary btn-md" value="Remove">Remove Recipient</button>
+          <button name="submit" type="submit" formmethod="post" class="btn btn-primary btn-md" value="Add">Add Recipient</button>
+          <button name="submit" type="submit" formmethod="POST" class="btn btn-primary btn-md" value="Remove">Remove Recipient</button>
         </form>
       </div>
 

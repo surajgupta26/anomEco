@@ -11,15 +11,17 @@
 <body>
 
 <div class="container">
-  <form method="post">
+  <form action="/alerts" method="post">
       <p></p>
     <div class="form-group">
       <label for="sel1">Select location (select one):</label>
-      <select class="form-control" id="sel1" onchange="this.form.submit();">
+      <select class="form-control" id="sel1" name="sel1">
         {% for location in locations %}
         <option>{{location}}</option>
         {% endfor %}
       </select>
+      <br>
+      <button type="submit" formmethod="POST" class="btn btn-primary btn-md" value="Select">Select</button>
     </div>
   </form>
 </div>

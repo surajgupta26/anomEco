@@ -1,9 +1,19 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 import json
 import pickle
-
+from alertSystem import AlertSystem
+import json
 
 app = Flask(__name__)
+als=AlertSystem()
+als.startServer()
+
+def getLocations():
+	with open('locations.json','r') as f:
+		d=json.load(f)['body']['result']
+		return [loc['name'] for loc in d]
+
+locations=getLocations()
 
 @app.route("/")
 def hello():
@@ -15,13 +25,13 @@ def newData():
 	with open('data.json', 'w') as outfile:
 		json.dump(content, outfile)
 
-
 @app.route("/alerts", methods =['GET','POST'])
 def alertLocation():
 	if request.method == 'GET':
-		return render_template('index.html')
+		return render_template('index.html', locations = locations)
 
 	if request.method == 'POST':
+		print request.form
 		location = request.form['sel1']
 		print location
 		return redirect(url_for('updateSubs', location_name = location))
@@ -30,17 +40,17 @@ def alertLocation():
 @app.route("/alerts/<location_name>", methods =['GET','POST'])
 def updateSubs(location_name):
 	if request.method == 'GET':
-		pickle_in = open("/subs/"+location_name+".pickle","rb")
-		example_dict = pickle.load(pickle_in)
-		return render_template('location.html', location_name = location_name, subscribers = example_dict['subs'])
+		return render_template('location.html', location_name = location_name, emails = als.getRecipients(location_name))
 
 	if request.method == 'POST':
-		subscribers = request.form['subs']
-		example_dict = {'subs': subscribers}
-		pickle_out = open("/subs/"+location_name+".pickle","wb")
-		pickle.dump(example_dict, pickle_out)
-		pickle_out.close()
-
+		email = request.form['usremail']
+		print 'Hello'
+		print request.form['submit']
+		if request.form['submit']=='Add':
+			als.addRecipient(location_name,email)
+		elif request.form['submit']=='Remove':
+			als.removeRecipient(location_name,email)
+		return redirect(url_for('updateSubs', location_name = location_name))
 
 if __name__ == "__main__":
 	app.run(debug=True)

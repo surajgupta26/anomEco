@@ -41,11 +41,11 @@ class AlertSystem:
 
     def removeRecipient(self, location, recipient_email):
         if recipient_email in self.location_to_emails[location]:
-            self.remove(recipient_email)
-            saveObject('location_to_emails.p',location_to_emails)
+            self.location_to_emails[location].remove(recipient_email)
+            saveObject('location_to_emails.p',self.location_to_emails)
 
     def getRecipients(self, location):
-        return self.location_to_emails[location]
+        return self.location_to_emails.get(location,[])
 
     def getMessage(self, alert):
         message=alert.getMessage()
