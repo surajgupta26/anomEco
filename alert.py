@@ -3,12 +3,16 @@ from email.MIMEText import MIMEText
 
 class Alert:
 
-    def __init__(self, datestring, location, fields, field_notifications):
+    def __init__(self, datestring, location, fields=[], field_notifications=[]):
         self.datestring=datestring
         self.location=location
         self.fields=fields
         self.field_notifications=field_notifications
         self.anomaly_count=len(fields)
+
+    def addField(field, field_notification):
+        self.fields.append(field)
+        self.field_notifications.append(field_notification)
 
     def getMessage(self):
         message=MIMEMultipart()
