@@ -15,7 +15,7 @@
       <p></p>
     <div class="form-group">
       <label for="sel1">Select location (select one):</label>
-      <select class="form-control" id="sel1" onchange="location = this.value;">
+      <select class="form-control" id="sel1" onchange="this.form.submit();">
         {% for location in locations %}
         <option>{{location}}</option>
         {% endfor %}
