@@ -11,11 +11,11 @@
 <body>
 
 <div class="container">
-  <form>
+  <form method="post">
       <p></p>
     <div class="form-group">
       <label for="sel1">Select location (select one):</label>
-      <select class="form-control" id="sel1" onchange="location = this.value;">
+      <select class="form-control" id="sel1" name="sel1" onchange="this.form.submit()">
         <option>Select Location</option>
         <option>Hyderabad</option>
         <option>Bangalore</option>
