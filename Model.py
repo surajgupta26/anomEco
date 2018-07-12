@@ -20,9 +20,14 @@ class Model:
     def __init__(self, score_threshold=1.0):
         if not os.path.exists('data'):
             os.makedirs('data')
+        if not os.path.exists('newdata'):
+            os.makedirs('newdata')
         self.score_threshold=score_threshold
 
-    def addData(self, location, data):
+    def addData(self, location):
+        f=open('newdata/'+location,'r')
+        data=json.load(f)
+        f.close()
         keys=data.keys()
         filename='data/'+location+'.p'
         if not os.path.exists(filename):
