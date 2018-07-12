@@ -58,14 +58,14 @@ def updateSubs(location_name):
 @app.route("/addData/<location_name>", methods = ['GET','POST'])
 def addData(location_name):
 	if request.method == 'POST':
-		data = requests.json
+		data = request.json
 		model.addData(location_name, data)
 		model.runOnLocation(location_name)
 
 @app.route("/runModel/<location_name>", methods = ['POST'])
 def runModel(location_name):
 	if request.method == 'POST':
-		data = requests.json
+		data = request.json
 		model.runOnLocation(location_name)
 
 if __name__ == "__main__":
