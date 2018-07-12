@@ -30,6 +30,7 @@ class Model:
             f=open('newdata/'+location,'r')
             data=json.load(f)
             f.close()
+        data=data['body'][0]['result']['metrics'][0]['lineItems']
         keys=data.keys()
         filename='data/'+location+'.p'
         if not os.path.exists(filename):
