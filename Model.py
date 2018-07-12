@@ -39,6 +39,8 @@ class Model:
         data=data['lineItems']
         keys=data.keys()
         filename='data/'+location+'.p'
+        for k in data.keys():
+            data[k]=data[k]['value']
         if not os.path.exists(filename):
             for k in keys:
                 data[k]=[data[k]]
