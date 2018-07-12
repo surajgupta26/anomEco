@@ -3,10 +3,12 @@ import json
 import pickle
 from alertSystem import AlertSystem
 import json
+from Model import Model
 
 app = Flask(__name__)
 als=AlertSystem()
 als.startServer()
+model = Model()
 
 def getLocations():
 	with open('locations.json','r') as f:
@@ -51,6 +53,20 @@ def updateSubs(location_name):
 		elif request.form['submit']=='Remove':
 			als.removeRecipient(location_name,email)
 		return redirect(url_for('updateSubs', location_name = location_name))
+
+
+@app.route("/addData/<location_name>", methods = ['GET','POST'])
+def addData(location_name):
+	if request.method == 'POST':
+		data = requests.json
+		model.addData(location_name, data)
+		model.runOnLocation(location_name)
+
+@app.route("/runModel/<location_name>", methods = ['POST'])
+def runModel(location_name):
+	if request.method == 'POST':
+		data = requests.json
+		model.runOnLocation(location_name)
 
 if __name__ == "__main__":
 	app.run(debug=True)
