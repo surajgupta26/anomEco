@@ -1,6 +1,6 @@
 from Model import Model
 import threading
-from subprocess import Popen, PIPE
+import os
 from copy import deepcopy
 from datetime import date,timedelta
 import json
@@ -45,17 +45,17 @@ class RunThread(threading.Thread):
         yab_command="yab -s ueconomics -m Ueconomics::getTripEconomics -t /usr/share/uber-idl/code.uber.internal/finance/ueconomics/ueconomics.thrift --caller yab-sohan.desarkar --request '"
         yab_command+=json.dumps(yab_template)
         yab_command+="' --header 'x-uber-uuid:b091e5dc-954b-4603-b224-531522ef19a3' --header 'x-uber-source:studio' --timeout=30000 -p 127.0.0.1:5437"
-        return yab_command
+        pipe_command=' > data/'+self.location
+        return yab_command+pipe_command
 
     def run(self):
         print self.getYabCommand()
-        p=Popen(self.getYabCommand(), stdout=PIPE)
-        print 'Piping'
-        stdoutdata=p.communicate()[0]
-        new_data=json.loads(stdoutdata)
-        print new_data
-        with open('data/'+location,'w') as f:
-            f.write(new_data)
+        os.system(self.getYabCommand())
+        # stdoutdata=p.communicate()[0]
+        # new_data=json.loads(stdoutdata)
+        # print new_data
+        # with open('data/'+location,'w') as f:
+        #     f.write(new_data)
 
 class Tester:
 
