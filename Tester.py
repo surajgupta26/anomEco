@@ -88,9 +88,9 @@ class Tester:
         daydelta=timedelta(days=1)
         while(currentDate<endDate):
             print 'Adding data for date:',str(currentDate)
-            tester.getDataForAllLocations(locations,currentDate)
+            # tester.getDataForAllLocations(locations,currentDate)
             time.sleep(day_interval)
             currentDate=currentDate+daydelta
 
 tester=Tester(None)
-tester.test(day_interval=45)
+tester.test(day_interval=4)
