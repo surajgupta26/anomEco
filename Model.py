@@ -62,7 +62,7 @@ class Model:
     def runOnLocation(self, location):
         filename='data/'+location+'.p'
         data=readObject(filename)
-        return self.run(data)
+        return self.run(data, location)
 
 
 
