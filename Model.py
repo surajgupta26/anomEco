@@ -21,7 +21,6 @@ class Model:
         if not os.path.exists('data'):
             os.makedirs('data')
         self.score_threshold=score_threshold
-        self.detector=AnomalyDetector({i:data[i] for i in range(length)}, score_threshold=self.score_threshold)
 
     def addData(self, location, data):
         keys=data.keys()
@@ -38,7 +37,8 @@ class Model:
 
     def isAnomaly(self, data):                  # returns if last data point is anonaly
         length=len(data)
-        anomalies=self.detector.get_anomalies()
+        detector=AnomalyDetector({i:data[i] for i in range(length)}, score_threshold=self.score_threshold)
+        anomalies=detector.get_anomalies()
         for anomaly in anomalies:
             if anomaly.exact_timestamp==length-1:
                 return True
