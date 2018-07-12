@@ -80,7 +80,7 @@ class Tester:
                 thread.join()
             threads=[]
 
-    def test(day_interval, locations=None, startDate=date(2017,1,1), runFor=timedelta(month=1)):
+    def test(day_interval, locations=None, startDate=date(2017,1,1), runFor=timedelta(months=1)):
         endDate=startDate+runFor
         if locations is None:
             locations=getLocations()
