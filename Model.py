@@ -68,7 +68,7 @@ class Model:
         alert=Alert(datestring=str(datetime.datetime.now()),location=location)
         for k in keys:
             if self.isAnomaly(data[k]):
-                alert.addField(k,'Something is wrong. Value: '+str(data[k]))
+                alert.addField(k,'Something is wrong. Value: '+str(data[k][-1]))
                 print 'Anomaly detected: Location =',location,'Field =',k
         return alert
 
