@@ -4,6 +4,7 @@ import datetime
 from alert import Alert
 from luminol.anomaly_detector import AnomalyDetector
 import numpy as np
+import cPickle
 
 def saveObject(filename, obj):
     f=open(filename,'w')
