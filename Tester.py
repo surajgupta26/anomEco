@@ -53,6 +53,8 @@ class RunThread(threading.Thread):
         os.system(self.getYabCommand())
         with open('newdata/'+self.location,'r') as f:
             data=json.load(f)
+            for k in data.keys():
+                data[k]=data[k]['value']
             requests.post("http://127.0.0.1:5000/addData/"+self.location,json=data)
 
 class Tester:
