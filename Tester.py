@@ -5,6 +5,7 @@ from copy import deepcopy
 from datetime import date,timedelta
 import json
 import requests
+import time
 
 class RunThread(threading.Thread):
 
@@ -55,6 +56,11 @@ class RunThread(threading.Thread):
             data=json.load(f)
             requests.post("http://127.0.0.1:5000/addData/"+self.location,json=data)
 
+def getLocations():
+	with open('locations.json','r') as f:
+		d=json.load(f)['body']['result']
+		return [loc['name'] for loc in d]
+
 class Tester:
 
     def __init__(self, model):
@@ -74,12 +80,16 @@ class Tester:
                 thread.join()
             threads=[]
 
-def getLocations():
-	with open('locations.json','r') as f:
-		d=json.load(f)['body']['result']
-		return [loc['name'] for loc in d]
+    def test(day_interval, locations=None, startDate=date(2017,1,1), runFor=timedelta(month=1)):
+        endDate=startDate+runFor
+        if locations is None:
+            locations=getLocations()
+        currentDate=startDate
+        daydelta=timedelta(days=1)
+        while(currentDate<endDate):
+            tester.getDataForAllLocations(locations,currentDate)
+            time.sleep(day_interval)
+            currentDate=currentDate+daydelta
 
 tester=Tester(None)
-locations=getLocations()
-date=date(2018,2,1)
-tester.getDataForAllLocations(locations,date)
+tester.test(day_interval)

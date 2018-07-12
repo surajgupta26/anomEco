@@ -53,11 +53,14 @@ class Model:
 
     def isAnomaly(self, data):                  # returns if last data point is anonaly
         length=len(data)
-        detector=AnomalyDetector({i:data[i] for i in range(length)}, score_threshold=self.score_threshold)
-        anomalies=detector.get_anomalies()
-        for anomaly in anomalies:
-            if anomaly.exact_timestamp==length-1:
-                return True
+        try:
+            detector=AnomalyDetector({i:data[i] for i in range(length)}, score_threshold=self.score_threshold)
+            anomalies=detector.get_anomalies()
+            for anomaly in anomalies:
+                if anomaly.exact_timestamp==length-1:
+                    return True
+        except:
+            return False
         return False
 
     def run(self, data, location):
