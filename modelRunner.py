@@ -60,7 +60,8 @@ def addData(location_name):
 	if request.method == 'POST':
 		data = request.json
 		model.addData(location_name, data)
-		model.runOnLocation(location_name)
+		alerts=model.runOnLocation(location_name)
+		als.sendAlert(alert)
 
 @app.route("/runModel/<location_name>", methods = ['POST'])
 def runModel(location_name):
