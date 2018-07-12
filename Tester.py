@@ -53,7 +53,7 @@ class RunThread(threading.Thread):
         os.system(self.getYabCommand())
         with open('newdata/'+self.location,'r') as f:
             data=json.load(f)
-            requests.post("http://127.0.0.1:5000/addData/"+location,data=data)
+            requests.post("http://127.0.0.1:5000/addData/"+self.location,data=data)
 
 class Tester:
 
