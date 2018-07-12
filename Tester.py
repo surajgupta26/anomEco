@@ -4,6 +4,7 @@ import os
 from copy import deepcopy
 from datetime import date,timedelta
 import json
+import requests
 
 class RunThread(threading.Thread):
 
@@ -50,6 +51,9 @@ class RunThread(threading.Thread):
 
     def run(self):
         os.system(self.getYabCommand())
+        with open('"newdata/'+self.location+'"','r') as f:
+            data=json.load(f)
+            requests.post("http://127.0.0.1:5000/addData/"+location,data=data)
 
 class Tester:
 
