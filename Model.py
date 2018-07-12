@@ -2,6 +2,8 @@ import json
 import os.path
 import datetime
 from alert import Alert
+from luminol.anomaly_detector import AnomalyDetector
+import numpy as np
 
 def saveObject(filename, obj):
     f=open(filename,'w')
@@ -15,9 +17,11 @@ def readObject(filename):
 
 class Model:
 
-    def __init__(self):
+    def __init__(self, score_threshold=1.0):
         if not os.path.exists('data'):
             os.makedirs('data')
+        self.score_threshold=score_threshold
+        self.detector=AnomalyDetector({i:data[i] for i in range(length)}, score_threshold=self.score_threshold)
 
     def addData(self, location, data):
         keys=data.keys()
@@ -33,6 +37,11 @@ class Model:
             saveObject(filename,existing_data)
 
     def isAnomaly(self, data):                  # returns if last data point is anonaly
+        length=len(data)
+        anomalies=self.detector.get_anomalies()
+        for anomaly in anomalies:
+            if anomaly.exact_timestamp==length-1:
+                return True
         return False
 
     def run(self, data, location):
