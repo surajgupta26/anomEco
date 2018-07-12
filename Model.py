@@ -69,6 +69,7 @@ class Model:
         for k in keys:
             if self.isAnomaly(data[k]):
                 alert.addField(k,'Something is wrong. Value: '+str(data[k]))
+                print 'Anomaly detected: Location =',location,'Field =',k
         return alert
 
     def runOnLocation(self, location):
