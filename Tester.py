@@ -32,10 +32,10 @@ class RunThread(threading.Thread):
         yab_template=self.readYabTemplate()
         startDate=yab_template['tripEconomicsRequest']['startDate']
         endDate=yab_template['tripEconomicsRequest']['endDate']
-        startDate['day']=date.day
-        startDate['month']=date.month
-        startDate['year']=date.year
-        edate=date+timedelta(days=1)
+        startDate['day']=self.date.day
+        startDate['month']=self.date.month
+        startDate['year']=self.date.year
+        edate=self.date+timedelta(days=1)
         endDate['day']=edate.day
         endDate['month']=edate.month
         endDate['year']=edate.year
@@ -88,9 +88,9 @@ class Tester:
         daydelta=timedelta(days=1)
         while(currentDate<endDate):
             print 'Adding data for date:',str(currentDate)
-            # tester.getDataForAllLocations(locations,currentDate)
+            tester.getDataForAllLocations(locations,currentDate)
             time.sleep(day_interval)
             currentDate=currentDate+daydelta
 
 tester=Tester(None)
-tester.test(day_interval=4)
+tester.test(day_interval=40)
