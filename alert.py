@@ -10,7 +10,7 @@ class Alert:
         self.field_notifications=field_notifications
         self.anomaly_count=len(fields)
 
-    def addField(field, field_notification):
+    def addField(self, field, field_notification):
         self.fields.append(field)
         self.field_notifications.append(field_notification)
 

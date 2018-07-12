@@ -93,4 +93,4 @@ class Tester:
             currentDate=currentDate+daydelta
 
 tester=Tester(None)
-tester.test(day_interval=4,locations=['Hyderabad'])
+tester.test(day_interval=1,locations=['Tulsa'])
