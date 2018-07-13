@@ -57,7 +57,8 @@ class AlertSystem:
         message=self.getMessage(alert)
         if len(message['To'])==0:
             return
-        self.server.sendmail(self.username, message['To'], message.as_string())
+        # self.server.sendmail(self.username, message['To'], message.as_string())
+        print 'Alert:',alert.fields
 
     def sendAlerts(self, alerts):
         for alert in alerts:
