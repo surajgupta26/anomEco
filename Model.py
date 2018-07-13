@@ -5,6 +5,9 @@ from alert import Alert
 from luminol.anomaly_detector import AnomalyDetector
 import numpy as np
 import cPickle
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
 
 def saveObject(filename, obj):
     f=open(filename,'w')
@@ -95,13 +98,17 @@ class Model:
             plt.ylabel(k)
             plt.xlabel('time')
 
-            if xpoints is None and ypoints is None: #Anomalies not given (detect using lumninol)
-                xpoints,ypoints = {} ,{}
-            if k not in xpoints.keys() or k not in ypoints.keys():
-                xpoints[k],ypoints[k] = [],[]
-                tmp = getAnomalies(k,d)
-                xpoints[k].append(tmp[0])
-                ypoints[k].append(tmp[1])
+            if k not in xpoints:
+                xpoints[k]=[]
+                ypoints[k]=[]
+
+            # if xpoints is None and ypoints is None: #Anomalies not given (detect using lumninol)
+            #     xpoints,ypoints = {} ,{}
+            # if k not in xpoints.keys() or k not in ypoints.keys():
+            #     xpoints[k],ypoints[k] = [],[]
+            #     tmp =
+            #     xpoints[k].append(tmp[0])
+            #     ypoints[k].append(tmp[1])
 
             # print n,len(xpoints),d.keys()
             plt.plot(d[k])

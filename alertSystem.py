@@ -50,7 +50,7 @@ class AlertSystem:
     def getMessage(self, alert):
         message=alert.getMessage()
         message['From']=self.username
-        message['To']=','.join(list(self.location_to_emails[alert.location]))
+        message['To']=','.join(list(self.getRecipients(alert.location)))
         return message
 
     def sendAlert(self, alert):
@@ -58,7 +58,6 @@ class AlertSystem:
         if len(message['To'])==0:
             return
         # self.server.sendmail(self.username, message['To'], message.as_string())
-        print 'Alert:',alert.fields
 
     def sendAlerts(self, alerts):
         for alert in alerts:

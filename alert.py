@@ -15,6 +15,7 @@ class Alert:
         self.field_notifications.append(field_notification)
 
     def getMessage(self):
+        print 'Inside'
         message=MIMEMultipart()
         message['Subject']='Anomlies in '+self.location+' on '+self.datestring
         body='Location: '+self.location+'\nDate: '+self.datestring+'\nList of anomalies:\n'
