@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title> Anomaly Plot</title>
+<body>
+<h1> Anomaly Plot for {{location_name}} </h1>
+<form action="/plot/{{location_name}}">
+<select name="feature_name">
+	{% for feature in feature_names %}
+		{% if feature == current_feature_name %}
+			<option selected value="{{ feature }}">{{ feature }}</option> 
+		{% else %} 
+			<option value="{{ feature }}">{{ feature }}</option> 
+		{% endif %}
+	{% endfor %}
+</select>
+<input type="submit">
+</form>
+
+<img src="{{ url_for('static',filename= file_name ) }}">
+</body>
+</html>

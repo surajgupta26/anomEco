@@ -113,7 +113,7 @@ class Model:
             # print n,len(xpoints),d.keys()
             plt.plot(d[k])
             plt.plot(xpoints[k],ypoints[k],'ro')
-            plt.savefig('plot/'+city+'_'+k+'.png')
+            plt.savefig('static/'+city+'_'+k+'.png')
 
 
 
