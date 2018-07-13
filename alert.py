@@ -8,7 +8,6 @@ class Alert:
         self.location=location
         self.fields=fields
         self.field_notifications=field_notifications
-        self.anomaly_count=len(fields)
 
     def addField(self, field, field_notification):
         self.fields.append(field)
@@ -17,12 +16,12 @@ class Alert:
     def getMessage(self):
         print 'Inside'
         message=MIMEMultipart()
-        message['Subject']='Anomlies in '+self.location+' on '+self.datestring
+        message['Subject']='Anomlies in '+self.location+" on "+self.datestring
         body='Location: '+self.location+'\nDate: '+self.datestring+'\nList of anomalies:\n'
-        for i in range(self.anomaly_count):
+        for i in range(self.getAnomalyCount()):
             body+='\t'+self.fields[i]+': '+self.field_notifications[i]+'\n'
         message.attach(MIMEText(body, 'plain'))
         return message
 
     def getAnomalyCount(self):
-        return self.anomaly_count
+        return len(self.fields)

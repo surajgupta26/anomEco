@@ -12,8 +12,8 @@ def saveObject(filename, obj):
 
 class AlertSystem:
 
-    def __init__(self, username='anomEco2018@gmail.com', password='anomEco@123'):
-        self.username='anomEco2018@gmail.com'
+    def __init__(self, username='anomeco0@gmail.com', password='anomEco@123'):
+        self.username=username
         self.password='anomEco@123'
         self.loadLocationToEmails()
 
@@ -50,14 +50,16 @@ class AlertSystem:
     def getMessage(self, alert):
         message=alert.getMessage()
         message['From']=self.username
-        message['To']=','.join(list(self.getRecipients(alert.location)))
         return message
 
     def sendAlert(self, alert):
-        message=self.getMessage(alert)
-        if len(message['To'])==0:
+        if alert.getAnomalyCount()==0:
             return
-        # self.server.sendmail(self.username, message['To'], message.as_string())
+        message=self.getMessage(alert)
+        for recipient in list(self.getRecipients(alert.location)):
+            message['To']=recipient
+            print 'Sending email to ',message['To']
+            self.server.sendmail(self.username, recipient, message.as_string())
 
     def sendAlerts(self, alerts):
         for alert in alerts:

@@ -17,7 +17,7 @@ def createPlot(current_feature_name, location_name):
 def build_plot(location_name):
     current_feature_name = request.args.get("feature_name")
     if current_feature_name == None:
-        current_feature_name = "net_bookings"
+        current_feature_name = "misc_partner_payments"
 
     file_name = createPlot(current_feature_name, location_name)
 

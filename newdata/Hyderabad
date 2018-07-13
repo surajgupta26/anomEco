@@ -1,0 +1,310 @@
+{
+  "body": {
+    "result": {
+      "locationVersion": 9,
+      "metrics": [
+        {
+          "date": "2017-01-30",
+          "lineItems": {
+            "account_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "booking_fee": {
+              "percent": 0,
+              "value": 0
+            },
+            "contingent_worker": {
+              "percent": 0,
+              "value": 0
+            },
+            "contingent_worker_expense": {
+              "percent": 0,
+              "value": 0
+            },
+            "contingent_worker_misc": {
+              "percent": 0,
+              "value": 0
+            },
+            "contingent_worker_time": {
+              "percent": 0,
+              "value": 0
+            },
+            "driver_payments_incl_all_except_hex": {
+              "percent": 3.6194512324359893,
+              "value": -253869.59434316377
+            },
+            "dxgy_incentives_reclass": {
+              "percent": 0,
+              "value": 0
+            },
+            "employee_promos_credits": {
+              "percent": -57.524032089867816,
+              "value": -755.2238915353616
+            },
+            "existing_part_incentives_incl_hex": {
+              "percent": -88.38920305010488,
+              "value": -298609.0574364751
+            },
+            "existing_part_incentives_incl_hex_net_reclass": {
+              "percent": -88.38920305010488,
+              "value": -298609.0574364751
+            },
+            "existing_rider_promo": {
+              "percent": 9.172092272459349,
+              "value": -6320.778600219854
+            },
+            "fares": {
+              "percent": -2.9180739110043903,
+              "value": 317262.8876511541
+            },
+            "fees": {
+              "percent": 2.049877895360036,
+              "value": 8085.012825210701
+            },
+            "g1_g1_rider_promo": {
+              "percent": 0,
+              "value": 0
+            },
+            "gross_bookings": {
+              "percent": -2.8004862689664853,
+              "value": 325347.90047636477
+            },
+            "indirect_marketing": {
+              "percent": 0,
+              "value": 0
+            },
+            "indirect_marketing_others": {
+              "percent": 0,
+              "value": 0
+            },
+            "insurance": {
+              "percent": 0,
+              "value": 0
+            },
+            "insurance_ibnr_reserve": {
+              "percent": 0,
+              "value": 0
+            },
+            "insurance_non_p2p_expense": {
+              "percent": 0,
+              "value": 0
+            },
+            "insurance_p2p_expense": {
+              "percent": 0,
+              "value": 0
+            },
+            "marketing_credits": {
+              "percent": 7.198175669413807,
+              "value": -685.4207401978745
+            },
+            "misc_partner_payments": {
+              "percent": -322.6717446610364,
+              "value": -13.337778976960436
+            },
+            "net_bookings": {
+              "percent": -5.052339835020044,
+              "value": 318509.7552216927
+            },
+            "net_inflows": {
+              "percent": -152.3518633725009,
+              "value": -243917.04796828993
+            },
+            "net_inflows_v2": {
+              "percent": -152.3518633725009,
+              "value": -243917.04796828993
+            },
+            "net_inflows_v4": {
+              "percent": -152.3518633725009,
+              "value": -243917.04796828993
+            },
+            "net_ufp_adjustments": {
+              "percent": -1028.4536620420681,
+              "value": -6838.145254672047
+            },
+            "new_partner_incentives": {
+              "percent": -24.999999999999993,
+              "value": -1978.746793697325
+            },
+            "new_partner_incentives_net_reclass": {
+              "percent": -24.999999999999993,
+              "value": -1978.746793697325
+            },
+            "new_partner_incentives_reclass": {
+              "percent": 0,
+              "value": 0
+            },
+            "no_of_trips": {
+              "percent": -0.15340426920817285,
+              "value": 122364
+            },
+            "other_new_rider_promo": {
+              "percent": 0,
+              "value": 0
+            },
+            "partner_acquisition": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_contra_rev_fees": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_corporate_communications": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_corporate_mobile_expense_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_labor_contract_fte": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_lobby_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_others": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_partner_acquisition": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_payroll_processing_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_professional_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_rider_acquisition": {
+              "percent": 0,
+              "value": 0
+            },
+            "po_security_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "professional_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "refunds": {
+              "percent": -3.0064245587616054,
+              "value": -949.8674972517406
+            },
+            "restaurant_payments_incl_all": {
+              "percent": 0,
+              "value": 0
+            },
+            "rider_acquisition": {
+              "percent": 0,
+              "value": 0
+            },
+            "tax_services": {
+              "percent": 0,
+              "value": 0
+            },
+            "tips": {
+              "percent": 0,
+              "value": 0
+            },
+            "toll_tax_fees": {
+              "percent": 2.049877895360036,
+              "value": 8085.012825210701
+            },
+            "tolls": {
+              "percent": 0,
+              "value": 0
+            },
+            "total_fares": {
+              "percent": -3.5092206262018295,
+              "value": 331019.6234518136
+            },
+            "total_part_incentives_and_misc": {
+              "percent": -87.767027894425,
+              "value": -300601.1420091494
+            },
+            "total_partner_payment_fees": {
+              "percent": 3.6194512324359893,
+              "value": -253869.59434316377
+            },
+            "total_rider_promo": {
+              "percent": 9.172092272459349,
+              "value": -6320.778600219854
+            },
+            "uflux_bcf": {
+              "percent": 0,
+              "value": 0
+            },
+            "uflux_cash_trip_credit": {
+              "percent": -14.1832003092609,
+              "value": 186362.2041595336
+            },
+            "uflux_cash_trip_debit": {
+              "percent": 14.275230366792718,
+              "value": -185684.41363136942
+            },
+            "uflux_cost": {
+              "percent": 8.147418843808587,
+              "value": -218086.422851775
+            },
+            "uflux_gross_fares": {
+              "percent": -5.24736985159668,
+              "value": 309474.8748992303
+            },
+            "uflux_revenue": {
+              "percent": -3.5094432509701483,
+              "value": 331018.01113961136
+            },
+            "uflux_rider_incentives": {
+              "percent": 5.083315109646827,
+              "value": -7761.423231953091
+            },
+            "uflux_sales_tax": {
+              "percent": 0,
+              "value": 0
+            },
+            "uflux_source_rate": {
+              "percent": -88.38920305010488,
+              "value": -298609.0574364751
+            },
+            "uflux_tips_partner": {
+              "percent": 0,
+              "value": 0
+            },
+            "uflux_tips_revenue": {
+              "percent": 0,
+              "value": 0
+            },
+            "uflux_tolls_partner": {
+              "percent": 0,
+              "value": 0
+            },
+            "uflux_ubereats_cost": {
+              "percent": 0,
+              "value": 0
+            },
+            "ufp_adj_down": {
+              "percent": -32.67624358823363,
+              "value": -20594.8810553316
+            },
+            "ufp_adj_up": {
+              "percent": -15.390900463295443,
+              "value": 13756.735800659551
+            }
+          }
+        }
+      ],
+      "newLocationVersionAvailable": false
+    }
+  },
+  "ok": true,
+  "trace": "0"
+}
+

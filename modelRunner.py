@@ -4,6 +4,7 @@ import pickle
 from alertSystem import AlertSystem
 import json
 from Model import Model
+import os
 
 app = Flask(__name__)
 als=AlertSystem()
@@ -16,6 +17,9 @@ def getLocations():
 		return [loc['name'] for loc in d]
 
 locations=getLocations()
+os.system("rm data/*")
+os.system("static/*")
+os.system("newdata/*")
 
 @app.route("/")
 def hello():
@@ -61,12 +65,14 @@ def addData(location_name):
 		model.addData(location_name, data)
 		alert=model.runOnLocation(location_name)
 		als.sendAlert(alert)
+		return 'OK'
 
 @app.route("/runModel/<location_name>", methods = ['POST'])
 def runModel(location_name):
 	if request.method == 'POST':
 		data = request.json
 		model.runOnLocation(location_name)
+		return 'OK'
 
 if __name__ == "__main__":
 	app.run(debug=True)

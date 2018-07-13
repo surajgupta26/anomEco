@@ -1,0 +1,26 @@
+{
+    "tripEconomicsRequest": {
+      "view": "ACCOUNTING",
+      "startDate": {
+        "day": 0,
+        "month": 0,
+        "year": 0
+      },
+      "locationIdentifiers": [],
+      "endDate": {
+        "day": 0,
+        "month": 0,
+        "year": 0
+      },
+      "linesOfBusiness": null,
+      "products": null,
+      "currency": null,
+      "aggType": null,
+      "emailID": null,
+      "uuid": null,
+      "ledgerLineItems": null,
+      "dashboard": null,
+      "locationVersion": null,
+      "locationHierarchyType": "RIDER"
+    }
+  }

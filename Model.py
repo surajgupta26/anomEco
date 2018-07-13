@@ -21,7 +21,7 @@ def readObject(filename):
 
 class Model:
 
-    def __init__(self, score_threshold=1.0):
+    def __init__(self, score_threshold=2.0):
         if not os.path.exists('data'):
             os.makedirs('data')
         if not os.path.exists('newdata'):
@@ -54,10 +54,14 @@ class Model:
                 existing_data[k].append(data[k])
             saveObject(filename,existing_data)
 
+    def getDate(self):
+        with open('date.txt','r') as f:
+            return f.readlines()[0]
+
     def isAnomaly(self, data):                  # returns if last data point is anonaly
         length=len(data)
         try:
-            detector=AnomalyDetector({i:data[i] for i in range(length)}, score_threshold=self.score_threshold)
+            detector=AnomalyDetector({i:data[i] for i in range(length)}, algorithm_name='exp_avg_detector', score_threshold=self.score_threshold)
             anomalies=detector.get_anomalies()
             for anomaly in anomalies:
                 if anomaly.exact_timestamp==length-1:
@@ -68,13 +72,13 @@ class Model:
 
     def run(self, data, location):
         keys=data.keys()
-        alert=Alert(datestring=str(datetime.datetime.now()),location=location)
+        alert=Alert(datestring=str(self.getDate()),location=location)
         xpoints={}
         ypoints={}
         for k in keys:
             is_anomaly,anomalies=self.isAnomaly(data[k])
             if is_anomaly:
-                alert.addField(k,'Something is wrong. Value: '+str(data[k]))
+                alert.addField(k,'Something is wrong. Value: '+str(data[k][-1]))
                 print 'Anomaly detected: Location =',location,'Field =',k
                 xpoints[k]=[anomaly.exact_timestamp for anomaly in anomalies]
                 ypoints[k]=[data[k][i] for i in xpoints[k]]
@@ -114,6 +118,7 @@ class Model:
             plt.plot(d[k])
             plt.plot(xpoints[k],ypoints[k],'ro')
             plt.savefig('static/'+city+'_'+k+'.png')
+            plt.close()
 
 
 

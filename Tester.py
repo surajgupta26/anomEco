@@ -44,9 +44,9 @@ class RunThread(threading.Thread):
         null_keys=['linesOfBusiness','products','currency','uuid','emailID','ledgerLineItems','dashboard','locationVersion']
         for key in null_keys:
             yab_template['tripEconomicsRequest'].pop(key)
-        yab_command="yab -s ueconomics -m Ueconomics::getTripEconomics -t ueconomics.thrift --caller yab-sohan.desarkar --request '"
+        yab_command="yab -s ueconomics -m Ueconomics::getTripEconomics -t ueconomics.thrift --caller yab-suraj.gupta --request '"
         yab_command+=json.dumps(yab_template)
-        yab_command+="' --header 'x-uber-uuid:b091e5dc-954b-4603-b224-531522ef19a3' --header 'x-uber-source:studio' --timeout=30000 -p 127.0.0.1:5437"
+        yab_command+="' --header 'x-uber-uuid:9e361397-8783-4f91-97e7-fa85f928f3b4' --header 'x-uber-source:studio' --timeout=30000 -p 127.0.0.1:5437"
         pipe_command=' > "newdata/'+self.location+'"'
         return yab_command+pipe_command
 
@@ -65,6 +65,9 @@ class Tester:
 
     def __init__(self, model):
         self.model=model
+        os.system("rm static/*")
+        os.system("rm data/*")
+        os.system("rm newdata/*")
 
     def getDataForAllLocations(self, locations, date):
         threads=[]
@@ -80,6 +83,11 @@ class Tester:
                 thread.join()
             threads=[]
 
+    def writeDate(self, date):
+        f=open('date.txt','w+')
+        f.write(str(date))
+        f.close()
+
     def test(self, day_interval, locations=None, startDate=date(2017,1,1), runFor=timedelta(days=30)):
         endDate=startDate+runFor
         if locations is None:
@@ -87,10 +95,11 @@ class Tester:
         currentDate=startDate
         daydelta=timedelta(days=1)
         while(currentDate<endDate):
+            self.writeDate(currentDate)
             print 'Adding data for date:',str(currentDate)
             tester.getDataForAllLocations(locations,currentDate)
             time.sleep(day_interval)
             currentDate=currentDate+daydelta
 
 tester=Tester(None)
-tester.test(day_interval=1,locations=['Tulsa'])
+tester.test(day_interval=1,locations=['Hyderabad'])
