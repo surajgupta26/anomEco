@@ -44,7 +44,7 @@ class RunThread(threading.Thread):
         null_keys=['linesOfBusiness','products','currency','uuid','emailID','ledgerLineItems','dashboard','locationVersion']
         for key in null_keys:
             yab_template['tripEconomicsRequest'].pop(key)
-        yab_command="yab -s ueconomics -m Ueconomics::getTripEconomics -t /usr/share/uber-idl/code.uber.internal/finance/ueconomics/ueconomics.thrift --caller yab-sohan.desarkar --request '"
+        yab_command="yab -s ueconomics -m Ueconomics::getTripEconomics -t ueconomics.thrift --caller yab-sohan.desarkar --request '"
         yab_command+=json.dumps(yab_template)
         yab_command+="' --header 'x-uber-uuid:b091e5dc-954b-4603-b224-531522ef19a3' --header 'x-uber-source:studio' --timeout=30000 -p 127.0.0.1:5437"
         pipe_command=' > "newdata/'+self.location+'"'

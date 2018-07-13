@@ -54,7 +54,6 @@ def updateSubs(location_name):
 			als.removeRecipient(location_name,email)
 		return redirect(url_for('updateSubs', location_name = location_name))
 
-
 @app.route("/addData/<location_name>", methods = ['GET','POST'])
 def addData(location_name):
 	if request.method == 'POST':

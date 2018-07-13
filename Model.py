@@ -5,6 +5,9 @@ from alert import Alert
 from luminol.anomaly_detector import AnomalyDetector
 import numpy as np
 import cPickle
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
 
 def saveObject(filename, obj):
     f=open(filename,'w')
@@ -58,24 +61,59 @@ class Model:
             anomalies=detector.get_anomalies()
             for anomaly in anomalies:
                 if anomaly.exact_timestamp==length-1:
-                    return True
+                    return True,anomalies
         except:
-            return False
-        return False
+            return False,[]
+        return False,anomalies
 
     def run(self, data, location):
         keys=data.keys()
         alert=Alert(datestring=str(datetime.datetime.now()),location=location)
+        xpoints={}
+        ypoints={}
         for k in keys:
-            if self.isAnomaly(data[k]):
-                alert.addField(k,'Something is wrong. Value: '+str(data[k][-1]))
+            is_anomaly,anomalies=self.isAnomaly(data[k])
+            if is_anomaly:
+                alert.addField(k,'Something is wrong. Value: '+str(data[k]))
                 print 'Anomaly detected: Location =',location,'Field =',k
+                xpoints[k]=[anomaly.exact_timestamp for anomaly in anomalies]
+                ypoints[k]=[data[k][i] for i in xpoints[k]]
+        self.plotAnomalies(keys,data,location,xpoints=xpoints,ypoints=ypoints)
         return alert
 
     def runOnLocation(self, location):
         filename='data/'+location+'.p'
         data=readObject(filename)
         return self.run(data, location)
+
+    def plotAnomalies(self,keys,data,city='Tulsa',xpoints=None,ypoints=None):  # /plot/<location>_<feature>.png
+        n = 0
+        d = data
+        if not os.path.exists('plot'):
+                os.makedirs('plot')
+        # print x
+        for k in keys:
+            n += 1
+            plt.figure(n)
+            plt.ylabel(k)
+            plt.xlabel('time')
+
+            if k not in xpoints:
+                xpoints[k]=[]
+                ypoints[k]=[]
+
+            # if xpoints is None and ypoints is None: #Anomalies not given (detect using lumninol)
+            #     xpoints,ypoints = {} ,{}
+            # if k not in xpoints.keys() or k not in ypoints.keys():
+            #     xpoints[k],ypoints[k] = [],[]
+            #     tmp =
+            #     xpoints[k].append(tmp[0])
+            #     ypoints[k].append(tmp[1])
+
+            # print n,len(xpoints),d.keys()
+            plt.plot(d[k])
+            plt.plot(xpoints[k],ypoints[k],'ro')
+            plt.savefig('plot/'+city+'_'+k+'.png')
 
 
 
